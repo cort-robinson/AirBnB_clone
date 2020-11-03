@@ -5,7 +5,7 @@ module that houses the base_model class
 import uuid
 from datetime import datetime
 import models
-time = "%Y-%m-%dT%H:%M:%S.%f"
+
 
 
 class BaseModel:
@@ -16,15 +16,15 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """initializes the base model"""
-        time = "%Y-%m-%dT%H:%M:%S.%f"
+        t = '%Y-%m-%dT%H:%M:%S.%f'
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
                     setattr(self, key, value)
             if hasattr(self, "created_at") and type(self.created_at) is str:
-                self.created_at = datetime.strptime(kwargs["created_at"], time)
+                self.created_at = datetime.strptime(kwargs.get("created_at"), t)
             if hasattr(self, "updated_at") and type(self.updated_at) is str:
-                self.updated_at = datetime.strptime(kwargs["updated_at"], time)
+                self.updated_at = datetime.strptime(kwargs.get("updated_at"), t)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -48,9 +48,8 @@ class BaseModel:
     def to_dict(self):
         """returns a dictionary containing keys/values of __dict__"""
         my_dict = self.__dict__.copy()
-        if "created_at" in my_dict:
-            my_dict["created_at"] = my_dict["created_at"].strftime(time)
-        if "updated_at" in my_dict:
-            my_dict["updated_at"] = my_dict["updated_at"].strftime(time)
         my_dict["__class__"] = self.__class__.__name__
+        my_dict["created_at"] = str(self.created_at.isoformat())
+        if "updated_at" in my_dict:
+            my_dict["updated_at"] = str(self.updated_at.isoformat())
         return my_dict
