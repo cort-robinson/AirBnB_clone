@@ -5,8 +5,8 @@ module that houses the base_model class
 import uuid
 from datetime import datetime
 import models
-
 time = "%Y-%m-%dT%H:%M:%S.%f"
+
 
 class BaseModel:
     """
@@ -16,6 +16,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """initializes the base model"""
+        time = "%Y-%m-%dT%H:%M:%S.%f"
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -38,7 +39,9 @@ class BaseModel:
                                          self.__dict__)
 
     def save(self):
-        """updates public instance attribute updated_at with current datetime"""
+        """updates public instance attribute updated_at
+        with current datetime
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
