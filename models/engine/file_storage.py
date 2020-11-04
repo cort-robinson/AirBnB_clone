@@ -2,9 +2,10 @@
 """
 module containing the FileStorage class
 """
-
 import json
+import os
 from models.base_model import BaseModel
+
 
 class FileStorage:
     """
@@ -35,10 +36,15 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        try:
-            with open(self.__file_path, 'r') as f:
-                jload = json.load(f)
-            for key in jload:
-                self.__objects[key] = classes[jload[key]["__class__"]](**jload[key])
-        except:
-            pass
+        from models.base_model import BaseModel
+        classes = {
+                "BaseModel"
+        }
+
+        if os.path.isfile(self.__file_path):
+            with open(self.__file_path, mode='r') as f:
+                j_load = json.load(f)
+                for key in j_load.keys():
+                    key_name = key.split('.')[0]
+                    if key_name in classes:
+                        self.__objects[key] = eval(key_name)(**j_load[key])
