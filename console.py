@@ -14,6 +14,8 @@ class HBNBCommand(cmd.Cmd):
     """HBNB console"""
 
     prompt = "(hbnb) "
+    classes = ["BaseModel", "User", "Place", "State",
+               "City", "Amenity", "Review"]
 
     def emptyline(self):
         """leaves blank line afrer return"""
@@ -25,9 +27,23 @@ class HBNBCommand(cmd.Cmd):
             print()
         return True
 
-    def do_quit(self, *args):
+    def do_quit(self, arg):
         """exits the console"""
         return True
+
+    def do_create(self, arg):
+        """
+        Creates a new object instance, save it (to the JSON file)
+        and prints the id. EX: $ create BaseModel
+        """
+        if not arg:
+            print("** class name missing **")
+        elif arg not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        else:
+            new = eval("{:s}()".format(arg))
+            print(new.id)
+            new.save()
 
 
 if __name__ == '__main__':
