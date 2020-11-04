@@ -19,7 +19,7 @@ class HBNBCommand(cmd.Cmd):
         """leaves blank line afrer return"""
         pass
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """exits console"""
         return True
 
