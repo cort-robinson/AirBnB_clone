@@ -15,13 +15,30 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(HBNB) "
 
+    def get_help(self, commands):
+        msg = set()
+        for name in commands:
+            if name != 'do_help':
+                try:
+                    doc = getattr(self, name).__doc__.split('\n')
+                except Exception:
+                    return ( "No help available when Python"
+                             " is run with the -OO switch." )
+                for x in doc:
+                    x = x.strip()
+                    if x:
+                        msg.add('  %s' % x)
+        msg = list(msg)
+        msg.sort()
+        msg = '\n'.join(msg)
+        return msg
+
     def emptyline(self):
         """leaves blank line afrer return"""
         pass
 
     def do_EOF(self, arg):
         """exits console"""
-        print("")
         return True
 
     def do_quit(self, arg):
