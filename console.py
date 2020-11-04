@@ -20,9 +20,10 @@ class HBNBCommand(cmd.Cmd):
         "BaseModel"
     }
 
-    def do_EOF(self, line):
+    def do_EOF(self, arg):
         """exits console"""
-        return (True)
+        print("")
+        return True
 
     def emptyline(self):
         """overwrites emptyline"""
@@ -30,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, arg):
         """exits the console"""
-        return (True)
+        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
