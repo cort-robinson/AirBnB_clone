@@ -13,7 +13,7 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """HBNB console"""
 
-    prompt = "(HBNB) "
+    prompt = "(hbnb) "
 
     def emptyline(self):
         """leaves blank line afrer return"""
