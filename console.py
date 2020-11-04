@@ -3,7 +3,6 @@
 module that contains the class HBNBCommand
 the entry point for the command line interpreter
 """
-
 import cmd
 import sys
 from datetime import datetime
@@ -14,20 +13,16 @@ from models.base_model import BaseModel
 class HBNBCommand(cmd.Cmd):
     """HBNB console"""
 
-    prompt = '(HBNB) '
+    prompt = "(HBNB) "
 
-    classes = {
-        "BaseModel"
-    }
+    def emptyline(self):
+        """leaves blank line afrer return"""
+        pass
 
     def do_EOF(self, arg):
         """exits console"""
         print("")
         return True
-
-    def emptyline(self):
-        """overwrites emptyline"""
-        pass
 
     def do_quit(self, arg):
         """exits the console"""
