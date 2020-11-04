@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""unittest for class BaseModel"""
+"""unittest for class FileStorage"""
 import unittest
 import pep8
 from models.base_model import BaseModel
@@ -7,8 +7,8 @@ from models.engine.file_storage import FileStorage
 from datetime import datetime
 
 
-class TestBaseModel(unittest.TestCase):
-    """Test class for class BaseModel"""
+class TestFileStorage(unittest.TestCase):
+    """Test class for class FileStorage"""
 
     def test_pep8_conformance(self):
         """Test that we conform to PEP8."""
