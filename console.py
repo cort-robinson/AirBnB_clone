@@ -6,7 +6,7 @@ the entry point for the command line interpreter
 import cmd
 import sys
 from datetime import datetime
-import models
+from models import storage
 from models.base_model import BaseModel
 
 
@@ -44,6 +44,24 @@ class HBNBCommand(cmd.Cmd):
             new = eval("{:s}()".format(arg))
             print(new.id)
             new.save()
+
+    def do_show(self, arg):
+        """
+        Prints the string representation of an instance based on the
+        class name and id. Ex: $ show BaseModel 1234-1234-1234
+        """
+        if not arg:
+            print("** class name missing **")
+            return
+        strings = arg.split()
+        if strings[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        elif len(strings) != 2:
+            print("** instance id missing **")
+        else:
+            instance_key = "{:s}.{:s}".format(strings[0], strings[1])
+            objects = storage.all()
+            print(objects[instance_key])
 
 
 if __name__ == '__main__':
