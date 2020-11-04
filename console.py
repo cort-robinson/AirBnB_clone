@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
         "BaseModel"
     }
 
-    def do_EOF(self, arg):
+    def do_EOF(self, line):
         """exits console"""
         return (True)
 
