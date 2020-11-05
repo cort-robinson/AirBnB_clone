@@ -88,8 +88,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         strings = arg.split()
-        if strings[0] not in HBNBCommand.classes.keys():
-            print("** class doesn't exist **'")
+        if strings[0] not in HBNBCommand.classes:
+            print("** class doesn't exist **")
         elif len(strings) != 2:
             print("** instance id missing **")
         else:
@@ -138,7 +138,7 @@ class HBNBCommand(cmd.Cmd):
             elif len(strings) < 3:
                 print("** attribute name missing **")
             elif len(strings) < 4:
-                print("** attribute value missing **")
+                print("** value missing **")
             else:
                 obj = objects[key]
                 setattr(obj, strings[2], strings[3])
