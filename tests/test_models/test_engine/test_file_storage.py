@@ -14,7 +14,7 @@ from models.user import User
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
 from datetime import datetime
-
+import models
 
 class TestFileStorage(unittest.TestCase):
     """Test class for class FileStorage"""
@@ -25,12 +25,6 @@ class TestFileStorage(unittest.TestCase):
         result = pep8style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
-
-    def test_file_path(self):
-        """tests the file path is functional"""
-        self.basemodel = BaseModel()
-        self.basemodel.save()
-        self.assertTrue(os.path.isfile("./file.json"))
 
     def test_file_objects(self):
         """tests for __objects functionality"""
@@ -49,12 +43,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertIs(obj, self.storage._FileStorage__objects)
         self.assertEqual(dict, type(self.storage.all()))
 
-    def test_new(self):
-        """testing the new module"""
-        model = BaseModel()
-        model.save()
-        new_object = storage.all()
-        self.assertEqual(dict, type(new_object))
+    def test_saves_new_instance(self):
+        """Tests if file is being created """
+        b1 = BaseModel()
+        models.storage.new(b1)
+        models.storage.save()
+        file_exist = os.path.exists(os.path.isfile("./file.json"))
+        self.assertTrue(file_exist)
 
 if __name__ == "__main__":
     unittest.main()
