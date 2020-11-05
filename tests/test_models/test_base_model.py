@@ -28,21 +28,5 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
-    def TestModels(self):
-        """Test model name"""
-        self.my_model.name = 'Holberton'
-        self.assertEqual(self.my_model.name, 'Holberton')
-        """Test model numbers"""
-        self.my_model.my_number = 55
-        self.assertEqual(self.my_model.my_number, 55)
-        """Test model exist"""
-        self.assertTrue(path.isfile('my_file.json'))
-        """Test model to dict"""
-        model = self.my_model.to_dict()
-        self.assertIsInstance(model["created_at"], str)
-        self.assertIsInstance(model["updated_at"], str)
-        self.assertIsInstance(model["my_number"], int)
-        self.assertIsInstance(model["id"], str)
-
 if __name__ == "__main__":
     unittest.main()
