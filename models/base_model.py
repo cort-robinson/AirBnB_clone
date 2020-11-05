@@ -33,13 +33,11 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
-            models.storage.save()
 
     def __str__(self):
         """string represemtation of base model"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__,
-                                         self.id,
-                                         self.__dict__)
+        return "[{:s}] ({:s}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__)
 
     def save(self):
         """updates public instance attribute updated_at

@@ -14,6 +14,8 @@ class HBNBCommand(cmd.Cmd):
     """HBNB console"""
 
     prompt = "(hbnb) "
+    classes = ["BaseModel", "User", "Place", "State",
+               "City", "Amenity", "Review"]
 
     classes = {
         "BaseModel",
@@ -35,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
             print()
         return True
 
-    def do_quit(self, *args):
+    def do_quit(self, arg):
         """exits the console"""
         return True
 
@@ -51,7 +53,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             new = eval("{:s}()".format(arg))
             print('{0}'.format(new.id))
-            new.save()
 
     def do_show(self, arg):
         """
