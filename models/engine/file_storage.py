@@ -5,6 +5,12 @@ module containing the FileStorage class
 import json
 import os
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 
 class FileStorage:
@@ -36,9 +42,15 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        from models.base_model import BaseModel
+
         classes = {
-                "BaseModel"
+                "BaseModel",
+                "User",
+                "State",
+                "City",
+                "Amenity",
+                "Place",
+                "Review"
         }
 
         if os.path.isfile(self.__file_path):

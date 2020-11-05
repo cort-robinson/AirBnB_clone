@@ -17,6 +17,16 @@ class HBNBCommand(cmd.Cmd):
     classes = ["BaseModel", "User", "Place", "State",
                "City", "Amenity", "Review"]
 
+    classes = {
+        "BaseModel",
+        "User",
+        "Place",
+        "State",
+        "City",
+        "Amenity",
+        "Review"
+    }
+
     def emptyline(self):
         """leaves blank line afrer return"""
         pass
@@ -42,8 +52,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             new = eval("{:s}()".format(arg))
-            print(new.id)
-            new.save()
+            print('{0}'.format(new.id))
 
     def do_show(self, arg):
         """
@@ -130,7 +139,6 @@ class HBNBCommand(cmd.Cmd):
                 obj = objects[key]
                 setattr(obj, strings[2], strings[3])
                 obj.save()
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
