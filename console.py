@@ -8,7 +8,12 @@ import sys
 from datetime import datetime
 from models import storage
 from models.base_model import BaseModel
-
+from models.city import City
+from models.user import User
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
 
 class HBNBCommand(cmd.Cmd):
     """HBNB console"""
@@ -16,13 +21,13 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     classes = {
-        "BaseModel",
-        "User",
-        "Place",
-        "State",
-        "City",
-        "Amenity",
-        "Review"
+        "BaseModel": BaseModel,
+        "User": User,
+        "Place": Place,
+        "State": State,
+        "City": City,
+        "Amenity": Amenity,
+        "Review": Review
     }
 
     def emptyline(self):
