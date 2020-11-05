@@ -46,5 +46,12 @@ class TestBaseModel(unittest.TestCase):
                 self.assertIn(k, model_json)
                 self.assertIs(type(model_json[k]), v)
 
+    def test_file_save(self):
+        """Test that info is saved to file"""
+        b3 = BaseModel()
+        b3.save()
+        with open("file.json", 'r') as f:
+            self.assertIn(b3.id, f.read())
+
 if __name__ == "__main__":
     unittest.main()
