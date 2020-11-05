@@ -51,5 +51,10 @@ class TestFileStorage(unittest.TestCase):
         file_exist = os.path.exists(os.path.isfile("./file.json"))
         self.assertTrue(file_exist)
 
+    def test_filestorage_save(self):
+        """file storage save"""
+        self.filestorage = FileStorage()
+        self.assertTrue(hasattr(self.filestorage, "save"))
+
 if __name__ == "__main__":
     unittest.main()
