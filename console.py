@@ -15,6 +15,7 @@ from models.review import Review
 from models.state import State
 from models.amenity import Amenity
 
+
 class HBNBCommand(cmd.Cmd):
     """HBNB console"""
 
@@ -142,6 +143,7 @@ class HBNBCommand(cmd.Cmd):
                 obj = objects[key]
                 setattr(obj, strings[2], strings[3])
                 obj.save()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
