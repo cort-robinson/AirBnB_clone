@@ -56,6 +56,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         else:
             new = eval("{:s}()".format(arg))
+            new.save()
             print('{0}'.format(new.id))
 
     def do_show(self, arg):
@@ -97,6 +98,7 @@ class HBNBCommand(cmd.Cmd):
             objects = storage.all()
             try:
                 del (objects[instance_key])
+                storage.save()
             except Exception:
                 print("** no instance found **")
 
