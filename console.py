@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             try:
                 print(objects[instance_key])
             except Exception:
-                print("** instance id missing **")
+                print("** no instance found **")
 
     def do_destroy(self, arg):
         """
@@ -85,6 +85,21 @@ class HBNBCommand(cmd.Cmd):
                 del (objects[instance_key])
             except Exception:
                 print("** no instance found **")
+
+    def do_all(self, arg):
+        """
+        Prints all string representation of all instances based
+        or not on the class name. Ex: $ all BaseModel or $ all
+        """
+        objects = storage.all()
+        if not arg:
+            print(objects)
+        elif arg not in HBNBCommand.classes:
+            print("** class doesn't exist **")
+        else:
+            list_out = [v for k, v in objects.items()
+                        if type(v).__name__ == arg]
+            print(list_out)
 
 
 if __name__ == '__main__':
