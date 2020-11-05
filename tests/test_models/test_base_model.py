@@ -28,5 +28,23 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
+    def test_to_dict(self):
+        """testing to dict"""
+        model = BaseModel()
+        model.name = "reese"
+        model.my_number = 55
+        model_types_json = {
+            "my_number": int,
+            "name": str,
+            "__class__": str,
+            "id": str,
+            "created_at": str
+        }
+        model_json = model.to_dict()
+        for k, v in model_types_json.items():
+            with self.subTest(k=k, v=v):
+                self.assertIn(k, model_json)
+                self.assertIs(type(model_json[k]), v)
+
 if __name__ == "__main__":
     unittest.main()
