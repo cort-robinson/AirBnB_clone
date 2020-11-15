@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+.places h1,
+h2 {
+    font-size: 30px;
+}
+
+.places article {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: #FF5A5F 1px solid;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.articles_box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
