@@ -80,4 +80,5 @@
 .locations:hover ul,
 .amenities:hover ul {
     display: block;
+    position: relative;
 }
